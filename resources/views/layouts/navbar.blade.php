@@ -15,7 +15,7 @@
         <a class="nav-link" href="{{ route('competencies.index')}}">Competencies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Mapping</a>
+        <a class="nav-link" href="{{ route('competencies.map')}}">Mapping</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Reports</a>

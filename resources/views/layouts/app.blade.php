@@ -33,7 +33,6 @@
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/rowgroup/1.2.0/js/dataTables.rowGroup.min.js"></script>
-        <script data-n-head="1" data-hid="intersect" src="/js/intersect-1.0.0.js"></script>
 
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">-->
     </head>

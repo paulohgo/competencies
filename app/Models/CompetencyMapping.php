@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class CompetencyMapping extends Model
 {
     use HasFactory;
+    protected $fillable = ['level_id', 'factor_id', 'competency_id'];
 }

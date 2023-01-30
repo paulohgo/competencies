@@ -41,9 +41,14 @@ Route::get('competencies', 'App\Http\Controllers\CompetencyController@index')->n
 Route::get('competencies/create', 'App\Http\Controllers\CompetencyController@create')->name('competencies.create');
 Route::post('competencies/store', 'App\Http\Controllers\CompetencyController@store')->name('competencies.store');
 Route::post('competencies/list', 'App\Http\Controllers\CompetencyController@list')->name('competencies.list');
-Route::post('competencies/map', 'App\Http\Controllers\CompetencyController@map')->name('competencies.map');
+Route::get('competencies/map', 'App\Http\Controllers\CompetencyMappingController@map')->name('competencies.map');
+Route::post('competencies/mapcompetency', 'App\Http\Controllers\CompetencyMappingController@mapCompetency')->name('competencies.mapcompetency');
+Route::post('competencies/removemapping', 'App\Http\Controllers\CompetencyMappingController@removeMapping')->name('competencies.removemapping');
 Route::get('competencies/edit/{competency}', 'App\Http\Controllers\CompetencyController@edit')->name('competencies.edit');
 Route::put('competencies/update/{competency}', 'App\Http\Controllers\CompetencyController@update')->name('competencies.update');
 Route::delete('competencies/destroy/{competency}', 'App\Http\Controllers\CompetencyController@destroy')->name('competencies.destroy');
 
+
+//Reports
+Route::get('reports', 'App\Http\Controllers\ReportsController@index')->name('reports.index');
 

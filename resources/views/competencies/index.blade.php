@@ -15,14 +15,15 @@
     <tbody>
         @foreach($competencies as $competency)
             <tr>
-                <td>{{ $competency->id }}</td>
-                <td>{{ $competency->name }}</td>
+                
+                <td>{{ $competency->factor_name }}</td>
+                <td>{{ $competency->competency_name }}</td>
                 <td>{{ $competency->description }}</td>
                 <td>
-                    <a href="{{ route('competencies.edit', $competency) }}">Edit</a>
+                    <a href="{{ route('competencies.edit', $competency->id) }}">Edit</a>
                 </td>
                 <td>
-                    <form action="{{ route('competencies.destroy', $competency) }}" method="POST">
+                    <form action="{{ route('competencies.destroy', $competency->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" type="submit">Delete</button>

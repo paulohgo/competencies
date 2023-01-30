@@ -29,6 +29,7 @@ class FactorController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
+        //dd($validatedData);
 
         Factor::create($validatedData);
 

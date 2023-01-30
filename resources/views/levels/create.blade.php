@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<form id="editForm" class="form-control w-25" action="{{ route('levels.store') }}" method="POST">
+<h2>New Level</h2>
+<form id="editForm" action="{{ route('levels.store') }}" method="POST">
     @csrf
     <label for="code">Code:</label>
     <input class="form-control" type="text" id="code" name="code">

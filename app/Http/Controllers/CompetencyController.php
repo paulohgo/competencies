@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competency;
+use App\Models\CompetencyMapping;
+use App\Models\Level;
+use App\Models\Factor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompetencyController extends Controller
 {
@@ -14,24 +18,27 @@ class CompetencyController extends Controller
      */
     public function index()
     {
-        $competencies = Competency::all();
-        return view('competencies.index', compact('competencies'));
+        $competencies = getCompetencies();
+        
+        return view('competencies.index')->with(compact('competencies'));
     }
 
     public function create()
     {
-        return view('competencies.create');
+        $factors = Factor::all();
+        return view('competencies.create')->with(compact('factors'));
     }
 
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'factor_id' => 'required',
         ]);
 
         Competency::create($validatedData);
-
         return redirect()->route('competencies.index');
     }
 
@@ -57,6 +64,20 @@ class CompetencyController extends Controller
         $competency->delete();
 
         return redirect()->route('competencies.index');
+    }
+
+    
+    public function list(Request $req)
+    {
+        $level = $req['level'];
+        $competencies = listCompetenciesByLevel($level);
+        $records = getAllCompetencyMappings($level);
+        return response()->json([$competencies, $records]);
+    }
+
+    public function levels()
+    {
+        $levels = Level::all();
     }
 
 }
