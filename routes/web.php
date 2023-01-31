@@ -48,6 +48,18 @@ Route::get('competencies/edit/{competency}', 'App\Http\Controllers\CompetencyCon
 Route::put('competencies/update/{competency}', 'App\Http\Controllers\CompetencyController@update')->name('competencies.update');
 Route::delete('competencies/destroy/{competency}', 'App\Http\Controllers\CompetencyController@destroy')->name('competencies.destroy');
 
+//Questions
+Route::get('questions', 'App\Http\Controllers\QuestionsController@index')->name('questions.index');
+Route::get('questions/create', 'App\Http\Controllers\QuestionsController@create')->name('questions.create');
+Route::post('questions/store', 'App\Http\Controllers\QuestionsController@store')->name('questions.store');
+Route::post('questions/list', 'App\Http\Controllers\QuestionsController@list')->name('questions.list');
+Route::get('questions/map', 'App\Http\Controllers\QuestionsMappingController@map')->name('questions.map');
+Route::post('questions/mapquestion', 'App\Http\Controllers\QuestionsMappingController@mapQuestion')->name('questions.mapquestion');
+Route::post('questions/removemapping', 'App\Http\Controllers\QuestionsMappingController@removeMapping')->name('questions.removemapping');
+Route::get('questions/edit/{question}', 'App\Http\Controllers\QuestionsController@edit')->name('questions.edit');
+Route::put('questions/update/{question}', 'App\Http\Controllers\QuestionsController@update')->name('questions.update');
+Route::delete('questions/destroy/{question}', 'App\Http\Controllers\QuestionsController@destroy')->name('questions.destroy');
+
 
 //Reports
 Route::get('reports', 'App\Http\Controllers\ReportsController@index')->name('reports.index');

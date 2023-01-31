@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h2 class="my-3">Mapping Competencies to Levels</h2><br>
+<div id="alert-container"></div>
 <form action="{{ route('competencies.map') }}" method="POST">
     <select class="form-control w-50 my-3" id="levels" name="levels" onchange="levelSelected()">
         <option disabled selected>Select a level</option>
@@ -46,7 +47,12 @@
             type: 'post',
             success: function(response) {
                 //Populate the competencies dropdown
+                /*$('#alert-container').html('<div class="alert alert-success w-50">Table updated</div>');
+                setTimeout(function() {
+                  $('.alert').fadeOut();
+                }, 3000);*/
                 console.log(response);
+
                 var select = document.getElementById("competencies");
                 var firstOption = select.options[0];
                 while (select.options.length > 1) {
@@ -117,6 +123,7 @@
                     tr.append($("<td>").html('<a href="#" onclick="deleteMapping(' + item.mapping_id + ')"><i class="bi bi-trash"></i></a>'));
                     table.append(tr);
                 });
+                displayMessage('Competency successfully mapped!');
             },
             statusCode: {
                 404: function(response) {
@@ -163,6 +170,7 @@
                         // add more cells if necessary
                         table.append(tr);
                     });
+                    displayMessage("Mapping successfully deleted.")
                 },
                 statusCode: {
                     404: function(response) {
@@ -174,5 +182,14 @@
                 }
             });
         }
+    }
+
+    function displayMessage(message)
+    {
+        $("#alert-container").text('');
+        $('#alert-container').html('<div class="alert alert-success w-50">' + message + '</div>');
+        setTimeout(function() {
+            $('.alert').slideUp();
+        }, 3000);
     }
 </script>

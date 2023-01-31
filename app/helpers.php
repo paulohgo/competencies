@@ -51,6 +51,8 @@ function getAllCompetencyMappings($level)
     ->join('levels as l', 'l.id', '=', 'competency_mappings.level_id')
     ->join('factors as f', 'f.id', '=', 'c.factor_id')
     ->where('l.id', '=', $level)
+    ->orderBy('f.name', 'asc')
+    ->orderBy('c.name', 'asc')
     ->get();
     return $records;
 }

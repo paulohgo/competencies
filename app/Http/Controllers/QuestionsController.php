@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Question;
+
+class QuestionsController extends Controller
+{
+    public function index()
+    {
+        $questions = Question::all();
+        return view('questions.index', compact('questions'));
+    }
+
+    public function create()
+    {
+        return view('questions.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'comments' => 'required',
+        ]);
+
+        Question::create($validatedData);
+
+        return redirect()->route('questions.index');
+    }
+
+    public function edit(Question $question)
+    {
+        return view('questions.edit', compact('question'));
+    }
+
+    public function update(Request $request, Question $question)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'comments' => 'required',
+        ]);
+
+        $question->update($validatedData);
+        return redirect()->route('questions.index');
+    }
+
+    public function destroy(Question $question)
+    {
+        $question->delete();
+
+        return redirect()->route('questions.index');
+    }
+}
