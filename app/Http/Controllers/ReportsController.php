@@ -12,4 +12,10 @@ class ReportsController extends Controller
         return view('reports.index', compact('reportData'));
 
     }
+
+    public function fullReport()
+    {
+        $records = getFullReport();
+        return view('reports.fullreport', compact('records'));
+    }
 }

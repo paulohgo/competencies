@@ -45,13 +45,21 @@ function getCompetencies()
 
 function getFullReport()
 {
-     $query = "SELECT * from competency
-    FROM competencies c
-    INNER JOIN factors f ON c.factor_id = f.id";
-    //$competencies = DB::select($query);
-    $competencies = DB::connection('mysql')->select($query);
-    //dd($competencies);
-    return $competencies;
+    $data = DB::table('factors as f')
+    ->select('l.code as level_code', 'f.name as factor', 'c.name as competency', 'q.name as question')
+    ->join('competencies as c', 'c.factor_id', '=', 'c.factor_id')
+    ->join('competency_mappings as cm', 'cm.competency_id', '=', 'c.id')
+    ->join('levels as l', 'l.id', '=', 'cm.level_id')
+    ->join('question_mappings as qm', 'qm.competency_id', '=', 'cm.competency_id')
+    ->join('questions as q', 'q.id', '=', 'qm.question_id')
+    ->orderBy('l.code')
+    ->orderBy('f.name')
+    ->orderBy('c.name')
+    ->orderBy('q.name')
+    ->get();
+
+    return $data;
+
 
 }
 

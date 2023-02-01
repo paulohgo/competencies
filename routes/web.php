@@ -63,4 +63,5 @@ Route::delete('questions/destroy/{question}', 'App\Http\Controllers\QuestionsCon
 
 //Reports
 Route::get('reports', 'App\Http\Controllers\ReportsController@index')->name('reports.index');
+Route::get('reports/full', 'App\Http\Controllers\ReportsController@fullReport')->name('reports.fullreport');
 

@@ -37,7 +37,7 @@
           <a class="dropdown-item" href="{{ route('competencies.map')}}">All questions for a level</a>
           <a class="dropdown-item" href="{{ route('competencies.map')}}">All questions for a competency</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Full Report</a>
+          <a class="dropdown-item" href="{{ route('reports.fullreport')}}">Full Report</a>
         </div>
       </li>
     </ul>
