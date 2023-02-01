@@ -52,4 +52,12 @@ class QuestionsController extends Controller
 
         return redirect()->route('questions.index');
     }
+
+    public function list(Request $req)
+    {
+        $competency = $req['competency'];
+        $questions = listQuestionsByCompetency($competency);
+        $records = getAllQuestionMappings($competency);
+        return response()->json([$questions, $records]);
+    }
 }

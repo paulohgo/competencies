@@ -53,10 +53,10 @@ Route::get('questions', 'App\Http\Controllers\QuestionsController@index')->name(
 Route::get('questions/create', 'App\Http\Controllers\QuestionsController@create')->name('questions.create');
 Route::post('questions/store', 'App\Http\Controllers\QuestionsController@store')->name('questions.store');
 Route::post('questions/list', 'App\Http\Controllers\QuestionsController@list')->name('questions.list');
-Route::get('questions/map', 'App\Http\Controllers\QuestionsMappingController@map')->name('questions.map');
-Route::post('questions/mapquestion', 'App\Http\Controllers\QuestionsMappingController@mapQuestion')->name('questions.mapquestion');
-Route::post('questions/removemapping', 'App\Http\Controllers\QuestionsMappingController@removeMapping')->name('questions.removemapping');
-Route::get('questions/edit/{question}', 'App\Http\Controllers\QuestionsController@edit')->name('questions.edit');
+Route::get('questions/map', 'App\Http\Controllers\QuestionMappingController@map')->name('questions.map');
+Route::post('questions/mapquestion', 'App\Http\Controllers\QuestionMappingController@mapQuestion')->name('questions.mapquestion');
+Route::post('questions/removemapping', 'App\Http\Controllers\QuestionMappingController@removeQuestionMapping')->name('questions.removemapping');
+Route::get('questions/edit/{question}', 'App\Http\Controllers\QuestionController@edit')->name('questions.edit');
 Route::put('questions/update/{question}', 'App\Http\Controllers\QuestionsController@update')->name('questions.update');
 Route::delete('questions/destroy/{question}', 'App\Http\Controllers\QuestionsController@destroy')->name('questions.destroy');
 

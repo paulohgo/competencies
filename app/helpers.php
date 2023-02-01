@@ -1,6 +1,7 @@
 <?php
 use App\Models\Competency;
 use App\Models\CompetencyMapping;
+use App\Models\QuestionMapping;
 use Illuminate\Support\Facades\DB;
 
 
@@ -12,6 +13,16 @@ function listCompetenciesByLevel($level)
     FROM competency_mappings WHERE level_id = $level)";
     $competencies = DB::select($query);
     return $competencies;
+}
+
+function listQuestionsByCompetency($competency)
+{
+    $query = "SELECT distinct q.id, q.name FROM questions q
+    LEFT JOIN question_mappings qm ON q.id = qm.question_id
+    WHERE q.id NOT IN (SELECT question_id 
+    FROM question_mappings WHERE competency_id = $competency)";
+    $questions = DB::select($query);
+    return $questions;
 }
 
 function getCompetencies()
@@ -53,6 +64,19 @@ function getAllCompetencyMappings($level)
     ->where('l.id', '=', $level)
     ->orderBy('f.name', 'asc')
     ->orderBy('c.name', 'asc')
+    ->get();
+    return $records;
+}
+
+function getAllQuestionMappings($competency)
+{
+    $records = QuestionMapping::select('c.name as competency_name', 'question_mappings.id as mapping_id', 'f.name as factor_name', 'q.name as question')
+    ->join('competencies as c', 'c.id', '=', 'question_mappings.competency_id')
+    ->join('questions as q', 'q.id', '=', 'question_mappings.question_id')
+    ->join('factors as f', 'f.id', '=', 'c.factor_id')
+    ->where('c.id', '=', $competency)
+    ->orderBy('c.name', 'asc')
+    ->orderBy('q.name', 'asc')
     ->get();
     return $records;
 }
