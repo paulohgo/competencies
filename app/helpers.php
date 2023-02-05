@@ -1,5 +1,6 @@
 <?php
 use App\Models\Competency;
+use App\Models\Question;
 use App\Models\CompetencyMapping;
 use App\Models\QuestionMapping;
 use Illuminate\Support\Facades\DB;
@@ -88,9 +89,5 @@ function getAllQuestionMappings($competency)
     ->get();
     return $records;
 }
-
-
-
-
 
 ?>

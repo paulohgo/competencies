@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competency;
+use App\Models\Question;
 use App\Models\CompetencyMapping;
 use App\Models\Level;
 use App\Models\Factor;
@@ -78,6 +79,32 @@ class CompetencyController extends Controller
     public function levels()
     {
         $levels = Level::all();
+    }
+
+    public function search(Request $req)
+    {
+        $searchStr = $req['search'];
+        $str = '%' . $req['search'] . '%';
+
+        $competencies = Competency::where('name', 'like', $str)
+        ->orWhere('description', 'like', $str)
+        ->get();
+        //dd($competencies);
+
+        $questions = Question::where('name', 'like', $str)
+        ->orWhere('comments', 'like', $str)
+        ->get();
+
+        $levels = DB::table('competency_mappings as cm')
+            ->select('l.code', 'l.description', 'c.name as competency_name')
+            ->join('competencies as c', 'c.id', '=', 'cm.competency_id')
+            ->join('levels as l', 'l.id', '=', 'cm.level_id')
+            ->where('c.name', 'like', $str)
+            ->orWhere('c.description', 'like', $str)
+            ->orderBy('l.code', 'asc')
+            ->get();
+
+        return view('competencies.search', compact('competencies', 'questions', 'levels', 'str', 'searchStr'));
     }
 
 }

@@ -47,6 +47,7 @@ Route::post('competencies/removemapping', 'App\Http\Controllers\CompetencyMappin
 Route::get('competencies/edit/{competency}', 'App\Http\Controllers\CompetencyController@edit')->name('competencies.edit');
 Route::put('competencies/update/{competency}', 'App\Http\Controllers\CompetencyController@update')->name('competencies.update');
 Route::delete('competencies/destroy/{competency}', 'App\Http\Controllers\CompetencyController@destroy')->name('competencies.destroy');
+Route::post('search', 'App\Http\Controllers\CompetencyController@search')->name('competencies.search');
 
 //Questions
 Route::get('questions', 'App\Http\Controllers\QuestionsController@index')->name('questions.index');

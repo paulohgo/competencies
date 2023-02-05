@@ -4,9 +4,11 @@
 <div id="alert-container"></div>
 <form action="{{ route('competencies.map') }}" method="POST">
     <select class="form-control w-50 my-3" id="competency" name="competency" onchange="competencySelected()">
-        <option disabled selected>Select a competency</option>
+        <option disabled selected value="0">Select a competency</option>
         @foreach ($competencies as $competency)
-        <option value="{{$competency->id}}">{{$competency->name}}</option>
+        <option value="{{$competency->id}}" {{ request()->input('id') == $competency->id ? 'selected' : '' }}>{{$competency->name}}</option>
+
+        <!--<option value="{{$competency->id}}">{{$competency->name}}</option>-->
         @endforeach
     </select>
 
@@ -36,6 +38,13 @@
 </html>
 @include('scripts.ajax')
 <script async defer>
+//When document is ready, check if value of competency is greater than zero. If it is, then call competencySelected()
+window.onload = function() {
+    let competency = document.getElementById("competency").value;
+    if (competency > 0) competencySelected();
+};
+
+
     function competencySelected() {
         let competency = document.getElementById("competency").value;
 

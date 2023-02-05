@@ -41,5 +41,10 @@
         </div>
       </li>
     </ul>
+    <form class="form-inline" action="{{ route('competencies.search')}}" method="post">
+      @csrf
+      <input class="form-control" style="display: inline-block; width:75%;" type="text" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" style="display: inline-block;" type="submit">Search</button>
+    </form>
   </div>
 </nav>
