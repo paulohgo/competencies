@@ -35,12 +35,14 @@
 
 @endsection
 @include('scripts.ajax')
+
+<script>
+    window.addEventListener("load", (event) => {
+      setDataTable();
+    });
+</script>
+
 <script async defer>
-
-    $(document).ready( function () {
-        $('#table').DataTable();
-    } );
-
 
     function hideRows()
     {
@@ -61,6 +63,13 @@
         row.style.display = "";
         }
 
+    }
+
+    function setDataTable()
+    {
+        $('#table').DataTable( {
+        paging: false
+        });
     }
    
 </script>

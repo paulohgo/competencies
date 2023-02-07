@@ -91,9 +91,17 @@ class CompetencyController extends Controller
         ->get();
         //dd($competencies);
 
-        $questions = Question::where('name', 'like', $str)
-        ->orWhere('comments', 'like', $str)
+        $questions = DB::table('questions as q')
+        ->select('q.id', 'q.name as question_name', 'q.comments', 'c.name as competency_name', 'c.id as competency_id')
+        ->leftJoin('question_mappings as qm', 'q.id', '=', 'qm.question_id')
+        ->leftJoin('competencies as c', 'c.id', '=', 'qm.competency_id')
+        ->where('q.name', 'like', $str)
+        ->orWhere('q.comments', 'like', $str)
         ->get();
+
+        /*$questions = Question::where('name', 'like', $str)
+        ->orWhere('comments', 'like', $str)
+        ->get();*/
 
         $levels = DB::table('competency_mappings as cm')
             ->select('l.code', 'l.description', 'c.name as competency_name')

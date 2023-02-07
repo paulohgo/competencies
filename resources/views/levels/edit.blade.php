@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<h2>Edit Level</h2>
-<form class="form-control" action="{{ route('levels.update', $level) }}" method="post">
+<h2 class="my-3">Edit Level</h2>
+<form action="{{ route('levels.update', $level) }}" method="post">
     {{ method_field('PUT') }}
     @csrf
     <label for="code">Code:</label>
