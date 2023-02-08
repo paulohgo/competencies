@@ -48,10 +48,17 @@ class FactorController extends Controller
             'description' => 'required',
         ]);
 
+        if ($factor->update($validatedData)) 
+        {
+            return redirect()->route('factors.index')->with('success', 'Factor updated!');    
+        } 
+        else 
+        {
+            return redirect()->route('factors.index')->with('fail', 'Factor update failed!');    
+        }
         $factor->update($validatedData);
-
-        return redirect()->route('factors.index');
     }
+
 
     public function destroy(Factor $factor)
     {

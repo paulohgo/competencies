@@ -49,7 +49,14 @@ class LevelController extends Controller
             'description' => 'required',
         ]);
 
-        $level->update($validatedData);
+        if ($level->update($validatedData)) 
+        {
+            return redirect()->route('levels.index')->with('success', 'Level updated!');    
+        } 
+        else 
+        {
+            return redirect()->route('levels.index')->with('fail', 'Level update failed!');    
+        }
 
         return redirect()->route('levels.index');
     }

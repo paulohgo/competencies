@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
+
 <h2>Levels</h2>
+@include('alert.alert')
+
 <a class="btn btn-primary btn-sm" href="{{ route('levels.create') }}">New Level</a>
 
 <table class="table table-hover">

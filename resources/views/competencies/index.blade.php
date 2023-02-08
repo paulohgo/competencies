@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h2 class="my-3">Competencies</h2>
+@include('alert.alert')
 <a class="btn btn-primary btn-sm" href="{{ route('competencies.create') }}">+ New Competency</a>
 <table class="table table-hover my-3">
     <thead>

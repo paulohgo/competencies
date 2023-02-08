@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-<h2>Full report</h2>
+<h2 class="my-3">Full report</h2>
 <div class="alert alert-info"> This report provides a mapping of all competencies and questions associated with each level</div>
 
 <label><b>Narrow down by level</b></label>
-<select class="form-control w-50" id="level" name="level" onchange="hideRows()">
+<select class="form-control w-50 my-3" id="level" name="level" onchange="hideRows()">
     <option disabled selected>Select a level to narrow down</option>
     <option value="all">All levels</option>
 @foreach($levels as $level)
     <option value="{{ $level->code }}">{{ $level->code }}</option>
-@endforeach
-    
+@endforeach 
 </select>
-<table class="table table-hover my-5" id="table">
+
+<table class="table table-hover my-3" id="table">
     <thead>
         <tr>
             <th>Level</th>    
@@ -50,8 +50,12 @@
        var level = document.getElementById("level").value;
         const rows = document.querySelectorAll("tr");
         for (const row of rows) {
-        if (!row.classList.contains(level)) {
-            row.style.display = "none";
+        if (level != 'all') {
+            if (!row.classList.contains(level)) {
+                row.style.display = "none";
+            }
+        } else {
+            row.style.display = "";
         }
         }
     }
@@ -68,7 +72,11 @@
     function setDataTable()
     {
         $('#table').DataTable( {
-        paging: false
+        paging: false,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
         });
     }
    

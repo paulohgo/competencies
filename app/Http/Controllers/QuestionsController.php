@@ -42,6 +42,14 @@ class QuestionsController extends Controller
             'comments' => 'required',
         ]);
 
+        if ($question->update($validatedData)) 
+        {
+            return redirect()->route('questions.index')->with('success', 'Question updated!');    
+        } 
+        else 
+        {
+            return redirect()->route('questions.index')->with('fail', 'Question update failed!');    
+        }
         $question->update($validatedData);
         return redirect()->route('questions.index');
     }

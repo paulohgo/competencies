@@ -41,10 +41,20 @@
           <a class="dropdown-item" href="{{ route('reports.fullreport')}}">Full Report</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Interviews
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('interviews.create')}}">Create Interview</a>
+          <a class="dropdown-item" href="{{ route('interviews.index')}}">Existing interviews</a>
+          <a class="dropdown-item" href="{{ route('interviews.map')}}">Map to questions</a>
+      </li>
     </ul>
     <form class="form-inline" action="{{ route('competencies.search')}}" method="post">
       @csrf
-      <input class="form-control" style="display: inline-block; width:75%;" type="text" name="search" placeholder="Search" aria-label="Search">
+      <input class="form-control" style="display: inline-block; width:50%;" type="text" name="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" style="display: inline-block;" type="submit">Search</button>
     </form>
   </div>

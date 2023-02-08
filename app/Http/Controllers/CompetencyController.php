@@ -48,6 +48,7 @@ class CompetencyController extends Controller
         return view('competencies.edit', compact('competency'));
     }
 
+    
     public function update(Request $request, Competency $competency)
     {
         $validatedData = $request->validate([
@@ -56,9 +57,17 @@ class CompetencyController extends Controller
         ]);
 
         $competency->update($validatedData);
+        if ($competency->update($validatedData)) 
+        {
+            return redirect()->route('competencies.index')->with('success', 'Competency updated!');    
+        } 
+        else 
+        {
+            return redirect()->route('competencies.index')->with('fail', 'Competency update failed!');    
+        }
 
-        return redirect()->route('competencies.index');
     }
+
 
     public function destroy(Competency $competency)
     {

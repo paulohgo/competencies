@@ -31,6 +31,18 @@ Route::delete('levels/destroy/{level}', 'App\Http\Controllers\LevelController@de
 Route::get('levels/showlevels/{competency}', 'App\Http\Controllers\LevelController@showLevels')->name('levels.showlevels');
 
 
+//Interviews
+Route::get('interviews', 'App\Http\Controllers\InterviewController@index')->name('interviews.index');
+Route::get('interviews/create', 'App\Http\Controllers\InterviewController@create')->name('interviews.create');
+Route::post('interviews/store', 'App\Http\Controllers\InterviewController@store')->name('interviews.store');
+Route::get('interviews/edit/{interview}', 'App\Http\Controllers\InterviewController@edit')->name('interviews.edit');
+Route::put('interviews/update/{interview}', 'App\Http\Controllers\InterviewController@update')->name('interviews.update');
+Route::delete('interviews/destroy/{interview}', 'App\Http\Controllers\InterviewController@destroy')->name('interviews.destroy');
+Route::get('interviews/map', 'App\Http\Controllers\InterviewController@map')->name('interviews.map');
+Route::post('interviews/mapquestion', 'App\Http\Controllers\InterviewController@mapQuestion')->name('interviews.mapquestion');
+
+
+
 //Factors
 Route::get('factors', 'App\Http\Controllers\FactorController@index')->name('factors.index');
 Route::get('factors/create', 'App\Http\Controllers\FactorController@create')->name('factors.create');
